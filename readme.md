@@ -149,9 +149,10 @@ smart_notes_backend/
 <a href="https://github.com/mzaid-dev" target="_blank">
       <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="Follow on GitHub"/>
 </a>
-<a href="mailto:dev.mzaid@gmail.com">
-      <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email Me"/>
 </a>
+  <a href="https://mail.google.com/mail/?view=cm&fs=1&to=dev.mzaid@gmail.com" target="_blank">
+    <img src="https://img.shields.io/badge/Email_Me-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email Me"/>
+  </a>
   </p>
   
   <sub><i>Built with ❤️ for the Open Source Community</i></sub>
