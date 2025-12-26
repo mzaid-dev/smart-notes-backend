@@ -2,9 +2,13 @@
 
   <img src="https://capsule-render.vercel.app/api?type=waving&color=0:3C3B3F,100:605C3C&height=250&section=header&text=Smart%20Notes%20Backend&fontSize=70&fontAlign=50&fontAlignY=35&animation=fadeIn&desc=Secure%20REST%20API%20with%20OTP%20&descAlign=50&descAlignY=60&descSize=20" alt="Smart Notes Backend Header" width="100%" />
 
+<div align="center">
   <a href="https://git.io/typing-svg">
-    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1000&color=F7F7F7&center=true&vCenter=true&width=600&lines=Django+Rest+Framework+Powered+%F0%9F%9A%80;Secure+Token+Authentication+%F0%9F%94%91;Email+OTP+Verification+%F0%9F%93%A7;Robust+Account+Management..." alt="Typing Animation" />
+    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1000&color=F7F7F7&background=0D1117&center=true&vCenter=true&width=600&lines=Django+Rest+Framework+Powered+%F0%9F%9A%80;Secure+Token+Authentication+%F0%9F%94%91;Email+OTP+Verification+%F0%9F%93%A7;Robust+Account+Management..." alt="Typing Animation" />
   </a>
+</div>
+  
+  <br>
 
   <p align="center">
     <img src="https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white" alt="Django" />
