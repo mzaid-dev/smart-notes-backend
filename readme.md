@@ -4,7 +4,7 @@
 
 <div align="center">
   <a href="https://git.io/typing-svg">
-    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1000&color=F7F7F7&background=0D1117&center=true&vCenter=true&width=600&lines=Django+Rest+Framework+Powered+%F0%9F%9A%80;Secure+Token+Authentication+%F0%9F%94%91;Email+OTP+Verification+%F0%9F%93%A7;Robust+Account+Management..." alt="Typing Animation" />
+    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1000&color=F7F7F7&background=0D1117&center=true&vCenter=true&width=600&lines=Django+Rest+Framework+Powered+%F0%9F%9A%80;Secure+Token+Authentication+%F0%9F%94%91;Email+OTP+Verification+%F0%9F%93%A7;Password+Reset+%26+Recovery+%F0%9F%94%90;Robust+Account+Management..." alt="Typing Animation" />
   </a>
 </div>
   
@@ -23,11 +23,12 @@
 
 ## 📖 About The Project
 
-**Smart Notes Backend** is the secure Authentication & User Management foundation for the Smart Notes ecosystem. It currently serves as a robust boilerplate for any Django project requiring secure Email-OTP based login. It is a production-ready RESTful API built to handle secure user data, authentication flows, and real-time validation.
+**Smart Notes Backend** is the secure Authentication & User Management foundation for the Smart Notes ecosystem. It serves as a robust boilerplate for any Django project requiring secure Email-OTP based login. It is a production-ready RESTful API built to handle secure user data, authentication flows, and real-time validation.
 
 Unlike simple tutorials, this backend implements **Real-World Security Patterns**:
 * **🔐 Token-Based Auth:** Stateless authentication compatible with Flutter/React Native.
 * **📧 OTP Verification:** Prevents fake accounts by validating emails via SMTP (Gmail).
+* **🔄 Password Recovery:** Secure "Forgot Password" flow using OTP verification.
 * **🛡️ Encryption:** Industry-standard `pbkdf2_sha256` password hashing.
 * **💀 2-Step Deletion:** "Request & Confirm" logic to prevent accidental data loss.
 
@@ -96,70 +97,84 @@ python manage.py runserver
 
 | Method | Endpoint | Access | Functionality |
 | --- | --- | --- | --- |
-| **POST** | `/api/auth/register/` | 🔓 Public | Creates a new user (Inactive state) |
-| **POST** | `/api/auth/verify-otp/` | 🔓 Public | Verifies email via 6-digit OTP code |
-| **POST** | `/api/auth/login/` | 🔓 Public | Returns `Token` for authenticated requests |
-| **POST** | `/api/auth/request-delete/` | 🔐 Auth | Sends a security OTP to registered email |
-| **DELETE** | `/api/auth/confirm-delete/` | 🔐 Auth | Permanently wipes user data from DB |
+| **Auth & Registration** |  |  |  |
+| `POST` | `/api/auth/register/` | 🔓 Public | Creates a new user (Inactive state) |
+| `POST` | `/api/auth/verify-otp/` | 🔓 Public | Verifies email via 6-digit OTP code |
+| `POST` | `/api/auth/resend-otp/` | 🔓 Public | Resends activation OTP if expired |
+| `POST` | `/api/auth/login/` | 🔓 Public | Returns `Token` for authenticated requests |
+| **Password Management** |  |  |  |
+| `POST` | `/api/auth/password-reset-request/` | 🔓 Public | Sends OTP to email for password reset |
+| `POST` | `/api/auth/password-reset-confirm/` | 🔓 Public | Sets new password using valid OTP |
+| **Account Management** |  |  |  |
+| `POST` | `/api/auth/delete-account-request/` | 🔐 Auth | Sends a security OTP to registered email |
+| `DELETE` | `/api/auth/delete-account-confirm/` | 🔐 Auth | Permanently wipes user data from DB |
 
 > **Note:** Endpoints marked **🔐 Auth** require the header: `Authorization: Token <your_token>`
 
 ## 🚀 Roadmap
 
-- ✅ **Secure Email/Password Registration**
-  - Implemented custom user model with email-first authentication.
-- ✅ **OTP Email Verification (SMTP)**
-  - Integrated Gmail SMTP for real-time 6-digit code validation.
-- ✅ **Token Generation (Login)**
-  - Stateless authentication using Django Rest Framework Tokens.
-- ✅ **Account Deletion (2-Step Security)**
-  - "Request & Confirm" pattern to prevent accidental data loss.
-- 🚧 **Notes CRUD Operations** (Coming Soon)
-  - Full Create, Read, Update, Delete functionality for user notes.
-- 🚧 **Premium Subscription Logic** (Coming Soon)
-  - Middleware to enforce the 20-note limit for free tier users.
-- ⏳ **User Profile Management** (Coming Soon)
-  - Endpoints for updating profile details and password resets.
+* ✅ **Secure Email/Password Registration**
+* Implemented custom user model with email-first authentication.
+
+
+* ✅ **OTP Email Verification (SMTP)**
+* Integrated Gmail SMTP for real-time 6-digit code validation.
+
+
+* ✅ **Password Recovery System**
+* Added secure flow to reset forgotten passwords via OTP.
+
+
+* ✅ **Token Generation (Login)**
+* Stateless authentication using Django Rest Framework Tokens.
+
+
+* ✅ **Account Deletion (2-Step Security)**
+* "Request & Confirm" pattern to prevent accidental data loss.
+
+
+* 🚧 **Notes CRUD Operations** (Coming Soon)
+* Full Create, Read, Update, Delete functionality for user notes.
+
+
+* 🚧 **Premium Subscription Logic** (Coming Soon)
+* Middleware to enforce the 20-note limit for free tier users.
+
+
 
 ## 📂 Project Structure
 
 ```text
 smart_notes_backend/
 ├── apps/
-│   └── accounts/          # User Auth & OTP Logic
+│   └── accounts/          # User Auth, OTP & Password Logic
 ├── config/                # Project Settings & URLs
 ├── .env                   # Secret Keys (Ignored by Git)
 ├── manage.py              # CLI Utility
 └── requirements.txt       # Dependencies
 
 ```
-<br>
-<hr>
 
 <div align="center">
-  
-  <h3>👤 Author</h3>
-  
-  <p><b>Muhammad Zaid</b></p>
-  
-  <p>
-    <a href="https://www.linkedin.com/in/muhammad-zaid-945b01337/" target="_blank">
-      <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="Connect on LinkedIn"/>
+
+<h3>👤 Author</h3>
+
+<p><b>Muhammad Zaid</b></p>
+
+<p>
+<a href="https://www.linkedin.com/in/muhammad-zaid-945b01337/" target="_blank">
+<img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="Connect on LinkedIn"/>
 </a>
 <a href="https://github.com/mzaid-dev" target="_blank">
-      <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="Follow on GitHub"/>
+<img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="Follow on GitHub"/>
 </a>
+<a href="https://mail.google.com/mail/?view=cm&fs=1&to=dev.mzaid@gmail.com" target="_blank">
+<img src="https://img.shields.io/badge/Email_Me-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email Me"/>
 </a>
-  <a href="https://mail.google.com/mail/?view=cm&fs=1&to=dev.mzaid@gmail.com" target="_blank">
-    <img src="https://img.shields.io/badge/Email_Me-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email Me"/>
-  </a>
-  </p>
-  
-  <sub><i>Built with ❤️ for the Open Source Community</i></sub>
-  
+</p>
+
+<sub><i>Built with ❤️ for the Open Source Community</i></sub>
+
 </div>
 
-<br>
-
-```
 ```

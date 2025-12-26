@@ -168,7 +168,7 @@ class RequestDeleteAccountView(views.APIView):
         send_otp_email(user, "Confirm Delete Account")
         logger.info(f"Delete account requested for: {user.email}")
         return Response({"message": "OTP sent to your email. Please verify to confirm deletion."}, status=status.HTTP_200_OK)
-    
+
 class ConfirmDeleteAccountView(views.APIView):
     permission_classes = [IsAuthenticated]
 
@@ -180,9 +180,28 @@ class ConfirmDeleteAccountView(views.APIView):
             return Response({"error": "OTP is required"}, status=status.HTTP_400_BAD_REQUEST)
         
         if user.otp == entered_otp:
+            # 1. Capture the email before the user is deleted
             user_email = user.email
+            
+            # 2. Send the "Goodbye" email
+            try:
+                send_mail(
+                    subject="Account Deleted Successfully",
+                    message="We are sorry to see you go. Your account and all associated data have been permanently deleted from Smart Notes.",
+                    from_email=settings.DEFAULT_FROM_EMAIL,
+                    recipient_list=[user_email],
+                    fail_silently=False,
+                )
+            except Exception as e:
+                # Log if email fails, but continue with deletion
+                logger.error(f"Goodbye email failed for {user_email}: {str(e)}")
+
+            # 3. Now delete the user
             user.delete()
+            
             logger.info(f"Account permanently deleted: {user_email}")
+            # Note: 204 status usually shows no body in Postman, 
+            # so you won't see the "message" text.
             return Response({"message": "Account permanently deleted."}, status=status.HTTP_204_NO_CONTENT)
         else:
             return Response({"error": "Invalid OTP."}, status=status.HTTP_400_BAD_REQUEST)

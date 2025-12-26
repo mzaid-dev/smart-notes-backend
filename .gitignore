@@ -1,7 +1,18 @@
-# .gitignore
-.venv/
+# Environments
+venv/
+env/
 .env
-db.sqlite3
+
+# Python
 __pycache__/
-*.pyc
+*.py[cod]
+
+# Database
+db.sqlite3
+
+# Static files
 staticfiles/
+
+# IDEs
+.vscode/
+.idea/
