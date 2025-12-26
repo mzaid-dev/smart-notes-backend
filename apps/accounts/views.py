@@ -5,6 +5,8 @@ from rest_framework.throttling import ScopedRateThrottle
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
 from django.contrib.auth import authenticate
+from django.core.mail import send_mail
+from django.conf import settings
 
 from .serializers import UserRegistrationSerializer, VerifyOTPSerializer
 from .models import User
